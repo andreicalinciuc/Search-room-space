@@ -40,9 +40,8 @@ export class AddAdComponent implements OnInit {
 
   onFileChange(event) {
     this.images = event.target.files;
-    console.log(this.images);
-
-    if (event.target.files && event.target.files.length) {
+    console.log(event.target.files.length);
+    if (event.target.files && event.target.files.length >= 2) {
       const files = event.target.files;
       const filesBase64 = [];
       for (const file of files) {
@@ -58,6 +57,10 @@ export class AddAdComponent implements OnInit {
 
         // need to run CD since file load runs outside of zone
       this.cd.markForCheck();
+      document.getElementById('validation').innerHTML = '';
+    } else {
+      document.getElementById('validation').innerHTML = 'Please enter at least 2 pictures';
+      document.getElementById('validation').style.color = 'red';
     }
   }
 

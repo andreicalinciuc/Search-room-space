@@ -1,5 +1,4 @@
 <form [formGroup]="myForm">
-  Value: {{myForm.value | json}}
   <hr>
   <div class="form-container">
     <mat-form-field>
@@ -32,6 +31,8 @@
       <mat-radio-button value=3>3</mat-radio-button>
     </mat-radio-group>
     <!-- POZE -->
+    <h5 id="validation">Insert image</h5>
+    <input type="file" accept="image/x-png,image/jpeg" multiple="true" (change)="onFileChange($event)" required>
 
 
     <mat-form-field>
@@ -41,12 +42,11 @@
     <mat-form-field>
         <input matInput type="number" placeholder="Price" formControlName="price" min=0 ngModel pattern="[0-9]*" required>
     </mat-form-field>
-
-
-
+    
   </div>
 
 
 </form>
-
-<input type="file" accept="image/x-png,image/jpeg" multiple="true" (change)="onFileChange($event)">
+<div class="form-container">
+    
+</div>
