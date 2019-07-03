@@ -13,7 +13,7 @@ export class AddAdComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      nume: '',
+      name: '',
       prenume: '',
       email: ['', [
         Validators.required,
@@ -26,8 +26,8 @@ export class AddAdComponent implements OnInit {
       description: ['', [
         Validators.maxLength(500)
       ]],
-      type: '',
-      adress: '',
+      rooms: '',
+      address: '',
       price: '',
 
     });

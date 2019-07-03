@@ -11,7 +11,12 @@ import { AddAdComponent } from './add-ad/add-ad.component';
 import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import '@angular/animations';
+import {MatRadioModule} from '@angular/material/radio';
+
+
 
 @NgModule({
   declarations: [
@@ -28,7 +33,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     HttpClientModule,
     BrowserAnimationsModule,
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

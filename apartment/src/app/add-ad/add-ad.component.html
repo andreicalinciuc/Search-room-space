@@ -1,7 +1,49 @@
 <form [formGroup]="myForm">
-        Value: {{myForm.value | json}}  
-        <hr>
-        <mat-form-field>
-            <input matInput placeholder="email">
-        </mat-form-field>    
+  Value: {{myForm.value | json}}
+  <hr>
+  <div class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Nume" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Prenume" formControlName="prenume">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" required>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 150 characters">
+      <input matInput #title maxlength="150" placeholder="Title" formControlName="title" required>
+      <mat-hint align="end">{{title.value?.length || 0}}/150</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 500 characters" class="full-width">
+      <textarea matInput #description maxlength="500" placeholder="Description" formControlName="description"
+        rows="6"> </textarea>
+      <mat-hint align="end">{{description.value?.length || 0}}/500</mat-hint>
+    </mat-form-field>
+
+    <h5>Number of rooms: </h5>
+    <mat-radio-group aria-label="Number of rooms" formControlName="rooms" required>
+      <mat-radio-button value=1 >1</mat-radio-button>
+      <mat-radio-button value=2>2</mat-radio-button>
+      <mat-radio-button value=3>3</mat-radio-button>
+    </mat-radio-group>
+    <!-- POZE -->
+
+    <mat-form-field>
+        <input matInput placeholder="Address" formControlName="address" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" placeholder="Price" formControlName="price" min=0 ngModel pattern="[0-9]*" required>
+    </mat-form-field>
+
+
+
+  </div>
+
+
 </form>

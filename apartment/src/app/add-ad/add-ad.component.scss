@@ -1,10 +1,17 @@
 .form-container {
-    display:block;
-    width:90%;
+    display:flex;
+    width:80%;
     padding:2em;
-    margin: 2em auto;
+    margin: 3em auto;
     background:#fff;
+    flex-direction: column;
+    min-width: 150px;
+    max-width: 500px;
+    
 }
+.full-width {
+    width: 100%;
+  }
 
 .alert {
     background: #f2edda;
@@ -24,6 +31,10 @@ h1 {
     font-family:'Muli';
     font-size: 2em;
 }
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
 
 
 @keyframes alertAnim {
