@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-ad',
@@ -8,10 +8,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddAdComponent implements OnInit {
   myForm: FormGroup;
+  images: string[];
+  fileControl: FormControl;
 
   constructor(private fb: FormBuilder , private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.fileControl = new FormControl([]);
     this.myForm = this.fb.group({
       name: '',
       prenume: '',
@@ -29,28 +32,32 @@ export class AddAdComponent implements OnInit {
       rooms: '',
       address: '',
       price: '',
-      file: [null, Validators.required]
+      file: this.fileControl
 
     });
     this.myForm.valueChanges.subscribe(console.log);
   }
 
   onFileChange(event) {
-    const reader = new FileReader();
+    this.images = event.target.files;
+    console.log(this.images);
 
     if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
+      const files = event.target.files;
+      const filesBase64 = [];
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          filesBase64.push(reader.result);
+        };
+        reader.readAsDataURL(file);
 
-      reader.onload = () => {
-        this.myForm.patchValue({
-          file: reader.result
-        });
+      }
+
+      this.fileControl.setValue(filesBase64);
 
         // need to run CD since file load runs outside of zone
-        this.cd.markForCheck();
-
-      };
+      this.cd.markForCheck();
     }
   }
 

@@ -33,7 +33,6 @@
     </mat-radio-group>
     <!-- POZE -->
 
-    <input type="file" multiple=true formControlName="file">
 
     <mat-form-field>
         <input matInput placeholder="Address" formControlName="address" required>
@@ -49,3 +48,5 @@
 
 
 </form>
+
+<input type="file" accept="image/x-png,image/jpeg" multiple="true" (change)="onFileChange($event)">

@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AddAdComponent } from './add-ad/add-ad.component';
 import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import '@angular/animations';
@@ -27,17 +27,18 @@ import {MatRadioModule} from '@angular/material/radio';
     HomeComponent,
     AddAdComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
