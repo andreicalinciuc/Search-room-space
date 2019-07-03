@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddAdComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder , private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.myForm = this.fb.group({
@@ -29,9 +29,29 @@ export class AddAdComponent implements OnInit {
       rooms: '',
       address: '',
       price: '',
+      file: [null, Validators.required]
 
     });
     this.myForm.valueChanges.subscribe(console.log);
+  }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.myForm.patchValue({
+          file: reader.result
+        });
+
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
+
+      };
+    }
   }
 
 }
