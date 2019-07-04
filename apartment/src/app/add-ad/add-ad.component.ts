@@ -72,7 +72,7 @@ export class AddAdComponent implements OnInit {
         'Content-Type': 'application/json'
       }
     });
-    alert('Anuntul a fost adaugat!');
+    alert('Your ad was add!');
     this.route.navigate(['']);
 
 }

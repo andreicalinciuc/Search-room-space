@@ -22,9 +22,9 @@ const start = async () => {
     const Apartment = db.collection("Apartment");
 
     app.post("/add-ad", async (req, res) => {
-        const {name,prenume,email,phone,title,description,rooms,adress,price,file } = req.body;
+        const {name,prenume,email,phone,title,description,rooms,address,price,file } = req.body;
        
-        const apartment = await Apartment.insert({
+        const apartment = await Apartment.insertOne({
             email,
             name,
             prenume,
@@ -32,7 +32,7 @@ const start = async () => {
             title,
             description,
             rooms,
-            adress,
+            address,
             price,
             file
         });

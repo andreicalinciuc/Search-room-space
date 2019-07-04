@@ -14,7 +14,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Phone" formControlName="phone" required>
+      <input matInput placeholder="Phone" formControlName="phone" ngModel pattern="[0-9]*" required>
     </mat-form-field>
 
     <mat-form-field hintLabel="Max 150 characters">
@@ -30,22 +30,23 @@
 
     <h5>Number of rooms: </h5>
     <mat-radio-group aria-label="Number of rooms" formControlName="rooms" required>
-      <mat-radio-button value=1 >1</mat-radio-button>
+      <mat-radio-button value=1>1</mat-radio-button>
       <mat-radio-button value=2>2</mat-radio-button>
       <mat-radio-button value=3>3</mat-radio-button>
     </mat-radio-group>
-    <!-- POZE -->
-    
-    <h5 id="validation">Insert pictures</h5>
-    <input value="2" type="file" accept="image/x-png,image/jpeg" multiple="true" (change)="onFileChange($event)" required min="2">
 
-<br>
+    <h5 id="validation">Insert pictures</h5>
+    <input value="2" type="file" accept="image/x-png,image/jpeg" multiple="true" (change)="onFileChange($event)"
+      required min="2">
+
+    <br>
+
     <mat-form-field>
-        <input matInput placeholder="Address" formControlName="address" required>
+      <input matInput placeholder="Address" formControlName="address" required>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput type="number" placeholder="Price" formControlName="price" min=0 ngModel pattern="[0-9]*" required>
+      <input matInput type="number" placeholder="Price" formControlName="price" min=0 ngModel pattern="[0-9]*" required>
     </mat-form-field>
     <button type="submit" [disabled]="!myForm.valid">Submit</button>
 
@@ -53,4 +54,3 @@
 
 
 </form>
-
