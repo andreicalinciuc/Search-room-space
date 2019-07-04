@@ -7,7 +7,6 @@ const { ObjectId } = require("mongodb");
 const config = {
     MONGO_URL: "mongodb+srv://admin:admin@cluster0-a9lh4.mongodb.net"
 };
-
 const start = async () => {
     const app = express();
     app.use(cors());

@@ -65,8 +65,16 @@ export class AddAdComponent implements OnInit {
     }
   }
   OnSubmit(myForm) {
-    
+    fetch('http://localhost:2690/add-ad', {
+      method: 'post',
+      body: JSON.stringify(myForm),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    alert('Anuntul a fost adaugat!');
     this.route.navigate(['']);
-  }
+
+}
 }
 

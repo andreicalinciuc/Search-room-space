@@ -13,6 +13,10 @@
       <input matInput placeholder="Email" formControlName="email" required>
     </mat-form-field>
 
+    <mat-form-field>
+      <input matInput placeholder="Phone" formControlName="phone" required>
+    </mat-form-field>
+
     <mat-form-field hintLabel="Max 150 characters">
       <input matInput #title maxlength="150" placeholder="Title" formControlName="title" required>
       <mat-hint align="end">{{title.value?.length || 0}}/150</mat-hint>
