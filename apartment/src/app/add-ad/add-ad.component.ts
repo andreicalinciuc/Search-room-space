@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ export class AddAdComponent implements OnInit {
   images: string[];
   fileControl: FormControl;
 
-  constructor(private fb: FormBuilder , private cd: ChangeDetectorRef , private route: Router) { }
+  constructor(private fb: FormBuilder, private cd: ChangeDetectorRef, private route: Router) { }
 
   ngOnInit() {
     this.fileControl = new FormControl([]);
@@ -56,7 +56,7 @@ export class AddAdComponent implements OnInit {
 
       this.fileControl.setValue(filesBase64);
 
-        // need to run CD since file load runs outside of zone
+      // need to run CD since file load runs outside of zone
       this.cd.markForCheck();
       document.getElementById('validation').innerHTML = '';
     } else {
@@ -65,14 +65,8 @@ export class AddAdComponent implements OnInit {
     }
   }
   OnSubmit(myForm) {
-    this.myForm.value.subscribe(
-      (data: any) => {
-        console.log(data);
-        localStorage.clear();
-        localStorage.setItem('apartment', JSON.stringify(data));
-        this.route.navigate(['']);
-      }
-    );
+    
+    this.route.navigate(['']);
   }
-
 }
+
