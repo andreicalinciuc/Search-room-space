@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-ad',
@@ -11,7 +12,7 @@ export class AddAdComponent implements OnInit {
   images: string[];
   fileControl: FormControl;
 
-  constructor(private fb: FormBuilder , private cd: ChangeDetectorRef) { }
+  constructor(private fb: FormBuilder , private cd: ChangeDetectorRef , private route: Router) { }
 
   ngOnInit() {
     this.fileControl = new FormControl([]);
@@ -32,7 +33,7 @@ export class AddAdComponent implements OnInit {
       rooms: '',
       address: '',
       price: '',
-      file: this.fileControl
+      file: [this.fileControl]
 
     });
     this.myForm.valueChanges.subscribe(console.log);
@@ -62,6 +63,16 @@ export class AddAdComponent implements OnInit {
       document.getElementById('validation').innerHTML = 'Please enter at least 2 pictures';
       document.getElementById('validation').style.color = 'red';
     }
+  }
+  OnSubmit(myForm) {
+    this.myForm.value.subscribe(
+      (data: any) => {
+        console.log(data);
+        localStorage.clear();
+        localStorage.setItem('apartment', JSON.stringify(data));
+        this.route.navigate(['']);
+      }
+    );
   }
 
 }

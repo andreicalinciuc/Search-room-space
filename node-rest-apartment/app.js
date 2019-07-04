@@ -17,32 +17,30 @@ const start = async () => {
         })
     );
 
-    const client = await MongoClient.connect(config.MONGO_URL);
-    const db = client.db("quiz");
+    const client = await MongoClient.connect(config.MONGO_URL,{ useNewUrlParser: true });
+    const db = client.db("apartment");
 
-    const Participants = db.collection("Participants");
-    const Questions = db.collection("Questions");
+    const Apartment = db.collection("Apartment");
 
-    app.post("/users/register", async (req, res) => {
-        const { email, name } = req.body;
-
-        const checkUser = await Participants.findOne({ email });
-
-        if (checkUser) {
-            return res.json({
-                success: false,
-                message: "User already exists"
-            });
-        }
-
-        const user = await Participants.insert({
+    app.post("/add-ad", async (req, res) => {
+        const {name,prenume,email,phone,title,description,rooms,adress,price,file } = req.body;
+       
+        const apartment = await Apartment.insert({
             email,
-            name
+            name,
+            prenume,
+            phone,
+            title,
+            description,
+            rooms,
+            adress,
+            price,
+            file
         });
 
         return res.json({
             success: true,
-            user: user.ops[0]
+            apartment: apartment.ops[0]
         });
     });
 
